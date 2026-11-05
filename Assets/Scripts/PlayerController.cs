@@ -73,8 +73,6 @@ public class PlayerController : MonoBehaviour
         else if (!sprintAction.IsPressed() && !isCrouching) {
             speed = walkSpeed;
         }
-
-        print("Speed: " + speed);
     
         Vector3 velocity = (transform.right * input.x + transform.forward * input.y) * speed;
 
