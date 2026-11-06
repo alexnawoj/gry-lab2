@@ -6,8 +6,10 @@ public class TriggerZone : MonoBehaviour
     [SerializeField] private AudioClip lockedSound;
     [SerializeField] private Light doorLight;
     [SerializeField] private TextHints textHints;
-    [SerializeField, TextArea] private string noCellsHint = "The door is locked and will not open. The star is the key.";
-    [SerializeField, TextArea] private string moreCellsHint = "Welcome Nerevar"; 
+    [SerializeField, TextArea] private string noCellsHint = "The door is locked and the generator is
+dead. Maybe there are power cells somewhere on the island?";
+    [SerializeField, TextArea] private string moreCellsHint = "The generator needs more power cells
+to open the door."; 
 
     void OnTriggerEnter(Collider other) {
         
