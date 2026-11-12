@@ -6,8 +6,9 @@ public class TriggerZone : MonoBehaviour
     [SerializeField] private AudioClip lockedSound;
     [SerializeField] private Light doorLight;
     [SerializeField] private TextHints textHints;
+    [SerializeField] private PowerCellCounter counter;
     [SerializeField, TextArea] private string noCellsHint = "The door is locked and the generator is dead. Maybe there are power cells somewhere on the island?";
-    [SerializeField, TextArea] private string moreCellsHint = "The generator needs more power cells to open the door."; 
+    [SerializeField, TextArea] private string moreCellsHint = "The generator needs more power cells to open the door.";
 
     void OnTriggerEnter(Collider other) {
         
@@ -20,10 +21,12 @@ public class TriggerZone : MonoBehaviour
         if(inventory.Charge >= cellsRequired) {
             door.GetComponent<DoorManager>().DoorCheck();
             inventory.HudOff();
+            counter.counterOff();
             doorLight.color = Color.green;        
         } else {
             door.GetComponent<AudioSource>().PlayOneShot(lockedSound);
             inventory.HudOn();
+            counter.counterOn();
             textHints.ShowHint(inventory.Charge == 0 ? noCellsHint : moreCellsHint);            
 
         } 

@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     [Header("Charge indicators")]
     [SerializeField] private Texture2D[] hudCharge;
     [SerializeField] private RawImage chargeHud;
-
+    [SerializeField] private PowerCellCounter counter;
     [SerializeField] private Texture2D[] meterCharge;
     [SerializeField] private Renderer meter;
 
@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
         AudioSource.PlayClipAtPoint(collectSound, transform.position);
         charge++;
         HudOn();
+        counter.counterOn();
         int level = Mathf.Min(charge, hudCharge.Length - 1);
         chargeHud.texture = hudCharge[level];
         meter.material.mainTexture = meterCharge[level];
@@ -26,5 +27,4 @@ public class Inventory : MonoBehaviour
 
     public void HudOn() => chargeHud.enabled = true;
     public void HudOff() => chargeHud.enabled = false;
-    
 }
