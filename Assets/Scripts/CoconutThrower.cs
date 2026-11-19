@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class CoconutThrower : MonoBehaviour
@@ -7,6 +8,7 @@ public class CoconutThrower : MonoBehaviour
     [SerializeField] private Rigidbody coconutPrefab;
     [SerializeField] private AudioClip throwSound;
     [SerializeField] private float throwSpeed = 30f;
+    private Coroutine throwCorutine;
 
     private InputAction attackAction;
     private AudioSource audioSource;
@@ -25,9 +27,19 @@ public class CoconutThrower : MonoBehaviour
     }
     
     private void Throw() {
+        if(throwCorutine == null)
+            throwCorutine = StartCoroutine(ThrowCorutine());
+        
+    }
+
+    IEnumerator ThrowCorutine() {
+        
         audioSource.PlayOneShot(throwSound);
         Rigidbody coconut = Instantiate(coconutPrefab, transform.position, transform.rotation);
         coconut.name = "coconut";
         coconut.linearVelocity = transform.forward * throwSpeed;
+
+        yield return new WaitForSeconds(0.5f);
+        throwCorutine = null;
     }
 }   

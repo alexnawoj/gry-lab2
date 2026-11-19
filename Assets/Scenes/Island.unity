@@ -756,6 +756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac1af695c7f8826e80763f713ea450f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThrowTrigger
+  textHints: {fileID: 1562805802}
+  matHint: Left click - throw coconut
 --- !u!65 &589946779
 BoxCollider:
   m_ObjectHideFlags: 0
